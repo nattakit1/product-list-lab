@@ -135,6 +135,21 @@
   font-size: 0.95rem;
 }
 
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.no-results {
+  text-align: center;
+  color: #888;
+  margin-top: 20px;
+}
+
+
 /* ส่วนที่นักศึกษาจะต้องเพิ่มเติม:
 - Responsive design
 - Filter styles
