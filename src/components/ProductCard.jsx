@@ -9,8 +9,34 @@ function ProductCard({ product, onAddToCart, onViewDetails }) {
         price,
         originalPrice,
         discount,
-        inStock
+        inStock,
+        rating
     } = product;
+
+    // ⭐ ฟังก์ชันแสดงดาว
+    const renderStars = (rating) => {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 !== 0;
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        const stars = [];
+
+        // ดาวเต็ม
+        for (let i = 0; i < fullStars; i++) {
+            stars.push(<span key={`full-${i}`} className="star full">★</span>);
+        }
+
+        // ดาวครึ่ง
+        if (hasHalfStar) {
+            stars.push(<span key="half" className="star half">⭐</span>);
+        }
+
+        // ดาวว่าง
+        for (let i = 0; i < emptyStars; i++) {
+            stars.push(<span key={`empty-${i}`} className="star empty">☆</span>);
+        }
+
+        return stars;
+    };
 
     return (
         <div className="product-card">
@@ -28,7 +54,12 @@ function ProductCard({ product, onAddToCart, onViewDetails }) {
                 <h3 className="product-name">{name}</h3>
                 <p className="product-description">{description}</p>
 
-                {/* แสดงส่วนลด (ถ้ามี) */}
+                {/* ⭐ ส่วนแสดงดาว */}
+                <div className="product-rating">
+                    {renderStars(rating)} <span className="rating-number">({rating})</span>
+                </div>
+
+                {/* 💸 ส่วนแสดงราคาและส่วนลด */}
                 <div className="product-price">
                     {discount > 0 ? (
                         <>
@@ -47,6 +78,7 @@ function ProductCard({ product, onAddToCart, onViewDetails }) {
                     )}
                 </div>
 
+                {/* 🔘 ปุ่มกด */}
                 <div className="product-actions">
                     <button
                         className="btn btn-secondary"
@@ -67,7 +99,7 @@ function ProductCard({ product, onAddToCart, onViewDetails }) {
     );
 }
 
-// ✅ ปรับปรุง PropTypes ให้ละเอียดขึ้นด้วย shape()
+// ✅ PropTypes ที่ละเอียด
 ProductCard.propTypes = {
     product: PropTypes.shape({
         id: PropTypes.number.isRequired,

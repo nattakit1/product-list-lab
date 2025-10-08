@@ -112,6 +112,29 @@
   margin-left: 5px;
 }
 
+.product-rating {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.star.full {
+  color: gold;
+}
+
+.star.half {
+  color: orange;
+}
+
+.star.empty {
+  color: #000000;
+}
+
+.rating-number {
+  margin-left: 5px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
 /* ส่วนที่นักศึกษาจะต้องเพิ่มเติม:
 - Responsive design
 - Filter styles
